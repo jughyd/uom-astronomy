@@ -6,13 +6,8 @@ import java.util.List;
 import javax.measure.Quantity;
 import javax.measure.quantity.Temperature;
 
-import tec.uom.se.quantity.QuantityFactoryProvider;
-import tec.uom.se.util.SI;
-
 public abstract class CommonAtmosphericProperties {
-	private Quantity<Temperature> meanSurfaceTemperature = QuantityFactoryProvider
-			.getQuantityFactory(Temperature.class).create(
-					(Number) getMeanSurfaceTemperature(), SI.KELVIN);
+	private Quantity<Temperature> meanSurfaceTemperature;
 	private List<String> atmosphericComposition = new ArrayList<String>();
 
 	public Quantity<Temperature> getMeanSurfaceTemperature() {
