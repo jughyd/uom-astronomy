@@ -1,7 +1,7 @@
 uom-astronomy
 =============
 
-Unit of Measurements for Astronomers
+Units of Measurement for Astronomers
 
 
 

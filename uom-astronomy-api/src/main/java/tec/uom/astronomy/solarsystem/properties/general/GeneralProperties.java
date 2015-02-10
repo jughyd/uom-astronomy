@@ -3,7 +3,9 @@ package tec.uom.astronomy.solarsystem.properties.general;
 import javax.measure.Quantity;
 import javax.measure.quantity.Time;
 
-public interface GeneralProperties {
+import tec.uom.se.function.Nameable;
+
+public interface GeneralProperties extends Nameable {
 
 	String getName();
 
