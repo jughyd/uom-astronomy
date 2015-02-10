@@ -3,19 +3,9 @@ package tec.uom.astronomy.solarsystem.properties.physical;
 import javax.measure.Quantity;
 import javax.measure.quantity.Length;
 
-import tec.uom.se.quantity.QuantityFactoryProvider;
-import tec.uom.se.util.SI;
-import tec.uom.se.util.SIPrefix;
-
 public class Circumference {
-	private Quantity<Length> equatorialCircumference = QuantityFactoryProvider
-			.getQuantityFactory(Length.class).create(
-					(Number) getEquatorialCircumference(),
-					SIPrefix.KILO(SI.METRE));
-	private Quantity<Length> meridonialCircumference = QuantityFactoryProvider
-			.getQuantityFactory(Length.class).create(
-					(Number) getMeridonialCircumference(),
-					SIPrefix.KILO(SI.METRE));
+	private Quantity<Length> equatorialCircumference;
+	private Quantity<Length> meridonialCircumference;
 
 	public Quantity<Length> getEquatorialCircumference() {
 		return equatorialCircumference;

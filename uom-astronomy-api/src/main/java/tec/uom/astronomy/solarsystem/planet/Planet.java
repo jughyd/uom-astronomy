@@ -10,9 +10,7 @@ import tec.uom.se.util.UCUM;
 public class Planet implements GeneralProperties {
 
 	private String name;
-	private Quantity<Time> age = QuantityFactoryProvider
-			.getQuantityFactory(Time.class).create(
-					(Number) getAge(), UCUM.YEAR);;
+	private Quantity<Time> age;
 	private String discoveredBy;
 	private PlanetaryPhysicalProperties planetaryPhysicalProperties;
 	private PlanetaryOrbitalProperties planetaryOrbitalProperties;

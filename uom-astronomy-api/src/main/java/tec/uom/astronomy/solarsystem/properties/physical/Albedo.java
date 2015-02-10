@@ -4,10 +4,6 @@ public class Albedo {
 	private double geometricAlbedo;
 	private double bondAlbedo;
 
-	/*
-	 * public Albedo(double geomAlbedo, double bndAlbedo){ this.geometricAlbedo
-	 * = geomAlbedo; this.bondAlbedo = bndAlbedo; }
-	 */
 	public double getGeometricAlbedo() {
 		return geometricAlbedo;
 	}

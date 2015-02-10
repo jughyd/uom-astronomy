@@ -4,24 +4,11 @@ import javax.measure.Quantity;
 import javax.measure.quantity.Length;
 import javax.measure.quantity.Time;
 
-import tec.uom.astronomy.solarsystem.units.AstronomicalSystemOfUnits;
-import tec.uom.se.quantity.QuantityFactoryProvider;
-import tec.uom.se.util.SI;
-
 public abstract class CommonOrbitalProperties {
-	private Quantity<Length> aphelion = QuantityFactoryProvider
-			.getQuantityFactory(Length.class).create((Number) getAphelion(),
-					AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT);
-	private Quantity<Length> periphelion = QuantityFactoryProvider
-			.getQuantityFactory(Length.class).create((Number) getPeriphelion(),
-					AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT);
-	private Quantity<Length> semiMajorAxis = QuantityFactoryProvider
-			.getQuantityFactory(Length.class).create(
-					(Number) getSemiMajorAxis(),
-					AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT);
-	private Quantity<Time> orbitalPeriod = QuantityFactoryProvider
-			.getQuantityFactory(Time.class).create((Number) getOrbitalPeriod(),
-					SI.DAY);
+	private Quantity<Length> aphelion;
+	private Quantity<Length> periphelion;
+	private Quantity<Length> semiMajorAxis;
+	private Quantity<Time> orbitalPeriod;
 	private Inclination inclination = new Inclination();
 
 	public Quantity<Time> getOrbitalPeriod() {

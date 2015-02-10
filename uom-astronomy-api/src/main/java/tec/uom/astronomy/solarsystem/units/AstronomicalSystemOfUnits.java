@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import javax.measure.Quantity;
 import javax.measure.Unit;
-import javax.measure.quantity.Acceleration;
 import javax.measure.quantity.Area;
 import javax.measure.quantity.Length;
 import javax.measure.quantity.Mass;
@@ -70,25 +69,23 @@ public class AstronomicalSystemOfUnits extends AbstractSystemOfUnits {
 	public static final TransformedUnit<Length> ASTRONOMICAL_UNIT = new TransformedUnit<Length>(
 			"AU", SI.METRE, new MultiplyConverter(149597871000.0));
 
-	
-	
 	public static final ProductUnit<VolumetricDensity> GRAM_PER_CUBIC_CENTIMETRE = addUnit(
-			new ProductUnit<VolumetricDensity>(SI.GRAM.divide((SIPrefix.CENTI(SI.METRE)).pow(3))), VolumetricDensity.class);
-	
-	 /**
-     * The SI unit for area quantities (standard name <code>m2</code>).
-     */
-    public static final ProductUnit<Area> SQUARE_KILOMETRE
-            = addUnit(new ProductUnit<Area>(SIPrefix.KILO(SI.METRE).multiply(SIPrefix.KILO(SI.METRE))), Area.class);
-    
-    
-    /**
-     * The SI unit for volume quantities (standard name <code>m3</code>).
-     */
-    public static final ProductUnit<Volume> CUBIC_KILOMETRE
-            = addUnit(new ProductUnit<Volume>(
-            		SQUARE_KILOMETRE.multiply(SIPrefix.KILO(SI.METRE))), Volume.class);
-	
+			new ProductUnit<VolumetricDensity>(SI.GRAM.divide((SIPrefix
+					.CENTI(SI.METRE)).pow(3))), VolumetricDensity.class);
+
+	/**
+	 * The SI unit for area quantities (standard name <code>m2</code>).
+	 */
+	public static final ProductUnit<Area> SQUARE_KILOMETRE = addUnit(
+			new ProductUnit<Area>(SIPrefix.KILO(SI.METRE).multiply(
+					SIPrefix.KILO(SI.METRE))), Area.class);
+
+	/**
+	 * The SI unit for volume quantities (standard name <code>m3</code>).
+	 */
+	public static final ProductUnit<Volume> CUBIC_KILOMETRE = addUnit(
+			new ProductUnit<Volume>(SQUARE_KILOMETRE.multiply(SIPrefix
+					.KILO(SI.METRE))), Volume.class);
 
 	// ///////////////////
 	// Collection View //
