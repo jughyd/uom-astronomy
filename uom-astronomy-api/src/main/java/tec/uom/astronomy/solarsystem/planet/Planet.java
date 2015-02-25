@@ -4,8 +4,6 @@ import javax.measure.Quantity;
 import javax.measure.quantity.Time;
 
 import tec.uom.astronomy.solarsystem.properties.general.GeneralProperties;
-import tec.uom.se.quantity.QuantityFactoryProvider;
-import tec.uom.se.util.UCUM;
 
 public class Planet implements GeneralProperties {
 
@@ -76,5 +74,5 @@ public class Planet implements GeneralProperties {
 	public String getDiscoveredBy() {
 		return discoveredBy;
 	}
-
+	
 }

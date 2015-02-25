@@ -3,6 +3,7 @@ package tec.uom.astronomy.solarsystem.planet;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.measure.Quantity;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import javax.measure.quantity.Mass;
@@ -22,17 +23,17 @@ import tec.uom.se.util.SI;
 import tec.uom.se.util.SIPrefix;
 import tec.uom.se.util.UCUM;
 
-public class Earth extends Planet{
+public class Earth extends Planet {
 
 	public Earth() {
-		super("Earth", QuantityFactoryProvider
-				.getQuantityFactory(Time.class).create(
-						4.54 * Math.pow(10,9), UCUM.YEAR), "Nicholas Copernicus");
-		setEarthPhysicalProperties(new PlanetaryPhysicalProperties());
-		setEarthOrbitalProperties(new PlanetaryOrbitalProperties());
-		setEarthAtmosphericProperties(new PlanetaryAtmosphericProperties());
+		super("Earth", QuantityFactoryProvider.getQuantityFactory(Time.class)
+				.create(4.54 * Math.pow(10, 9), UCUM.YEAR),
+				"Nicholas Copernicus");
+		setEarthPhysicalProperties();
+		setEarthOrbitalProperties();
+		setEarthAtmosphericProperties();
 	}
-	
+
 	private PlanetaryPhysicalProperties earthPhysicalProperties;
 	private PlanetaryOrbitalProperties earthOrbitalProperties;
 	private PlanetaryAtmosphericProperties earthAtmosphericProperties;
@@ -49,121 +50,138 @@ public class Earth extends Planet{
 		return earthPhysicalProperties;
 	}
 
-	private void setEarthPhysicalProperties(
-			PlanetaryPhysicalProperties earthPhysicalProperties) {
+	private void setEarthPhysicalProperties() {
 		Albedo albedo = new Albedo();
 		albedo.setBondAlbedo(0.306);
 		albedo.setGeometricAlbedo(0.367);
 		Circumference circumference = new Circumference();
 		circumference.setEquatorialCircumference(QuantityFactoryProvider
-				.getQuantityFactory(Length.class).create(
-						40075.017, SIPrefix.KILO(SI.METRE)));
+				.getQuantityFactory(Length.class).create(40075.017,
+						SIPrefix.KILO(SI.METRE)));
+
 		circumference.setMeridonialCircumference(QuantityFactoryProvider
-				.getQuantityFactory(Length.class).create(
-						40007.86, SIPrefix.KILO(SI.METRE)));
-		earthPhysicalProperties.setAbsoluteMass(QuantityFactoryProvider
-			.getQuantityFactory(Mass.class).create(3 * Math.pow(10, -6),
-					AstronomicalSystemOfUnits.SOLAR_MASS));
-		earthPhysicalProperties.setAlbedo(albedo);
-		earthPhysicalProperties.setCircumference(circumference);
-		earthPhysicalProperties.setEquatorialRadius(QuantityFactoryProvider
-				.getQuantityFactory(Length.class).create(
-						6378.1, SIPrefix.KILO(SI.METRE)));
-		earthPhysicalProperties.setEquatorialRotationVelocity(QuantityFactoryProvider
-				.getQuantityFactory(Speed.class).create(
-						6378.1, SI.METRES_PER_SECOND));
-		earthPhysicalProperties.setMeanDensity(QuantityFactoryProvider
-				.getQuantityFactory(VolumetricDensity.class).create(
-						5.514,
-						AstronomicalSystemOfUnits.GRAM_PER_CUBIC_CENTIMETRE));
-		earthPhysicalProperties.setMeanRadius(QuantityFactoryProvider
-				.getQuantityFactory(Length.class).create(
-						6371.0, SIPrefix.KILO(SI.METRE)));
-		earthPhysicalProperties.setMomentOfInertia(0.3307);
-		earthPhysicalProperties.setPolarRadius(QuantityFactoryProvider
-				.getQuantityFactory(Length.class).create(
-						6356.8, SIPrefix.KILO(SI.METRE)));
-		earthPhysicalProperties.setSiderealRotationPeriod(QuantityFactoryProvider
-				.getQuantityFactory(Time.class).create(
-						0.99726968, SI.DAY));
-		earthPhysicalProperties.escapeVelocity();
-		earthPhysicalProperties.flattening();
-		earthPhysicalProperties.planetVolume();
-		earthPhysicalProperties.surfaceArea();
-		earthPhysicalProperties.surfaceGravity();
+				.getQuantityFactory(Length.class).create(40007.86,
+						SIPrefix.KILO(SI.METRE)));
+
+		Quantity<Mass> absoluteMass = QuantityFactoryProvider
+				.getQuantityFactory(Mass.class).create(3 * Math.pow(10, -6),
+						AstronomicalSystemOfUnits.SOLAR_MASS);
+
+		Quantity<Length> equatorialRadius = QuantityFactoryProvider
+				.getQuantityFactory(Length.class).create(6378.1,
+						SIPrefix.KILO(SI.METRE));
+
+		Quantity<Speed> equatorialRotationVelocity = QuantityFactoryProvider
+				.getQuantityFactory(Speed.class).create(6378.1,
+						SI.METRES_PER_SECOND);
+
+		Quantity<VolumetricDensity> meanDensity = QuantityFactoryProvider
+				.getQuantityFactory(VolumetricDensity.class).create(5.514,
+						AstronomicalSystemOfUnits.GRAM_PER_CUBIC_CENTIMETRE);
+
+		Quantity<Length> meanRadius = QuantityFactoryProvider
+				.getQuantityFactory(Length.class).create(6371.0,
+						SIPrefix.KILO(SI.METRE));
+
+		double momentOfInertia = 0.3307;
+
+		Quantity<Length> polarRadius = QuantityFactoryProvider
+				.getQuantityFactory(Length.class).create(6356.8,
+						SIPrefix.KILO(SI.METRE));
+
+		Quantity<Time> siderealRotationPeriod = QuantityFactoryProvider
+				.getQuantityFactory(Time.class).create(0.99726968, SI.DAY);
+
+		PlanetaryPhysicalProperties earthPhysicalProperties = new PlanetaryPhysicalProperties(
+				polarRadius, equatorialRadius, equatorialRotationVelocity,
+				momentOfInertia, circumference, siderealRotationPeriod,
+				meanRadius, meanDensity, absoluteMass, albedo);
+
 		this.earthPhysicalProperties = earthPhysicalProperties;
 	}
-	
-	private void setEarthOrbitalProperties(
-			PlanetaryOrbitalProperties earthOrbitalProperties) {
+
+	private void setEarthOrbitalProperties() {
 		Satellites satellites = new Satellites();
 		satellites.setArtificalSatellite(1070);
 		satellites.setNaturalSatellite(1);
 		Inclination inclination = new Inclination();
 		inclination.setEclipticInclination(QuantityFactoryProvider
-				.getQuantityFactory(Angle.class).create(
-						0.00005, SI.DEGREE_ANGLE));
-		inclination.setInvariablePlaneInclination(QuantityFactoryProvider
-				.getQuantityFactory(Angle.class).create(
-						1.57869, SI.DEGREE_ANGLE));
-		inclination.setSunEquatorInclination(QuantityFactoryProvider
-				.getQuantityFactory(Angle.class).create(
-						7.155, SI.DEGREE_ANGLE));
-		earthOrbitalProperties.setAphelion(QuantityFactoryProvider
-				.getQuantityFactory(Length.class).create(1.01559,
-						AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT));
-		earthOrbitalProperties.setAverageOrbitalSpeed(QuantityFactoryProvider
-				.getQuantityFactory(Speed.class).create(
-						29777.7778, SI.METRES_PER_SECOND));
-		earthOrbitalProperties.setInclination(inclination);
-		earthOrbitalProperties.setMeanAnomaly(QuantityFactoryProvider
-				.getQuantityFactory(Angle.class).create(355.53,
+				.getQuantityFactory(Angle.class).create(0.00005,
 						SI.DEGREE_ANGLE));
-		earthOrbitalProperties.setOrbitalPeriod(QuantityFactoryProvider
-				.getQuantityFactory(Time.class).create(365.256363004,
-						SI.DAY));
-		earthOrbitalProperties.setPeriphelion(QuantityFactoryProvider
+
+		inclination.setInvariablePlaneInclination(QuantityFactoryProvider
+				.getQuantityFactory(Angle.class).create(1.57869,
+						SI.DEGREE_ANGLE));
+		inclination
+				.setSunEquatorInclination(QuantityFactoryProvider
+						.getQuantityFactory(Angle.class).create(7.155,
+								SI.DEGREE_ANGLE));
+
+		Quantity<Length> aphelion = QuantityFactoryProvider.getQuantityFactory(
+				Length.class).create(1.01559,
+				AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT);
+
+		Quantity<Speed> averageOrbitalSpeed = QuantityFactoryProvider
+				.getQuantityFactory(Speed.class).create(29777.7778,
+						SI.METRES_PER_SECOND);
+
+		Quantity<Angle> meanAnomaly = QuantityFactoryProvider
+				.getQuantityFactory(Angle.class)
+				.create(355.53, SI.DEGREE_ANGLE);
+
+		Quantity<Time> orbitalPeriod = QuantityFactoryProvider
+				.getQuantityFactory(Time.class).create(365.256363004, SI.DAY);
+
+		Quantity<Length> periphelion = QuantityFactoryProvider
 				.getQuantityFactory(Length.class).create(0.9832687,
-						AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT));
-		earthOrbitalProperties.setSatellites(satellites);
-		earthOrbitalProperties.setSemiMajorAxis(QuantityFactoryProvider
-				.getQuantityFactory(Length.class).create(
-						1.00000011,
-						AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT));
-		earthOrbitalProperties.calculateEccentricity();
+						AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT);
+
+		Quantity<Length> semiMajorAxis = QuantityFactoryProvider
+				.getQuantityFactory(Length.class).create(1.00000011,
+						AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT);
+
+		PlanetaryOrbitalProperties earthOrbitalProperties = new PlanetaryOrbitalProperties(
+				meanAnomaly, averageOrbitalSpeed, satellites, aphelion,
+				periphelion, semiMajorAxis, orbitalPeriod, inclination);
 		this.earthOrbitalProperties = earthOrbitalProperties;
 	}
-	
-	private void setEarthAtmosphericProperties(
-			PlanetaryAtmosphericProperties earthAtmosphericProperties){
-		List<String> composition = new ArrayList<String>();
-		composition.add("Nitrogen");
-		composition.add("Oxygen");
-		composition.add("Argon");
-		composition.add("Carbon Dioxide");
-		earthAtmosphericProperties.setAtmosphericComposition(composition);
-		earthAtmosphericProperties.setMeanSurfaceTemperature(QuantityFactoryProvider
-			.getQuantityFactory(Temperature.class).create(
-					288, SI.KELVIN));
-		earthAtmosphericProperties.setSurfacePressure(QuantityFactoryProvider
-				.getQuantityFactory(Pressure.class).create(
-						101.325, SIPrefix.KILO(SI.PASCAL)));
+
+	private void setEarthAtmosphericProperties() {
+		List<String> atmospherComposition = new ArrayList<String>();
+		atmospherComposition.add("Nitrogen");
+		atmospherComposition.add("Oxygen");
+		atmospherComposition.add("Argon");
+		atmospherComposition.add("Carbon Dioxide");
+
+		Quantity<Temperature> surfaceTemperature = QuantityFactoryProvider
+				.getQuantityFactory(Temperature.class).create(288, SI.KELVIN);
+
+		Quantity<Pressure> surfPressure = QuantityFactoryProvider
+				.getQuantityFactory(Pressure.class).create(101.325,
+						SIPrefix.KILO(SI.PASCAL));
+
+		PlanetaryAtmosphericProperties earthAtmosphericProperties = new PlanetaryAtmosphericProperties(
+				surfPressure, surfaceTemperature, atmospherComposition);
 		this.earthAtmosphericProperties = earthAtmosphericProperties;
 	}
-	
+
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder(super.toString());
+		StringBuilder sb = new StringBuilder();
+		sb.append(Planet.class.getSimpleName() + ": ");
+		sb.append(getName());
 		sb.append("; ");
-		sb.append(PlanetaryPhysicalProperties.class.getSimpleName());
-		sb.append(": ");
-		sb.append(getEarthPhysicalProperties());
+		sb.append("Age: ");
+		sb.append(getAge().getValue() + " year");
 		sb.append("; ");
-		sb.append(PlanetaryOrbitalProperties.class.getSimpleName());
-		sb.append(getEarthOrbitalProperties());
+		sb.append("Discovered By: ");
+		sb.append(getDiscoveredBy());
 		sb.append("; ");
-		sb.append(PlanetaryAtmosphericProperties.class.getSimpleName());
-		sb.append(getEarthAtmosphericProperties());
+		sb.append(earthPhysicalProperties.toString());
+		sb.append("; ");
+		sb.append(earthOrbitalProperties.toString());
+		sb.append("; ");
+		sb.append(earthAtmosphericProperties.toString());
 		return sb.toString();
 	}
 }

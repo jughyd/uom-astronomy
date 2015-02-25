@@ -10,20 +10,18 @@ public abstract class CommonAtmosphericProperties {
 	private Quantity<Temperature> meanSurfaceTemperature;
 	private List<String> atmosphericComposition = new ArrayList<String>();
 
+	public CommonAtmosphericProperties(
+			Quantity<Temperature> surfaceTemperature,
+			List<String> atmospherComposition) {
+		this.meanSurfaceTemperature = surfaceTemperature;
+		this.atmosphericComposition = atmospherComposition;
+	}
+
 	public Quantity<Temperature> getMeanSurfaceTemperature() {
 		return meanSurfaceTemperature;
 	}
 
-	public void setMeanSurfaceTemperature(
-			Quantity<Temperature> meanSurfaceTemperature) {
-		this.meanSurfaceTemperature = meanSurfaceTemperature;
-	}
-
 	public List<String> getAtmosphericComposition() {
 		return atmosphericComposition;
-	}
-
-	public void setAtmosphericComposition(List<String> atmosphericComposition) {
-		this.atmosphericComposition = atmosphericComposition;
 	}
 }

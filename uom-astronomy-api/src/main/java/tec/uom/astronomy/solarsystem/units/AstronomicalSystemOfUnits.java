@@ -54,8 +54,7 @@ public class AstronomicalSystemOfUnits extends AbstractSystemOfUnits {
 	 */
 
 	public static final TransformedUnit<Mass> SOLAR_MASS = new TransformedUnit<Mass>(
-			"M☉", SI.KILOGRAM, new MultiplyConverter(
-					1.9891 * (Math.pow(10, 30))));
+			"M☉", SI.KILOGRAM, new MultiplyConverter(1.9891 * Math.pow(10, 30)));
 
 	/**
 	 * A length unit accepted for use with SI units (standard name
@@ -66,8 +65,13 @@ public class AstronomicalSystemOfUnits extends AbstractSystemOfUnits {
 	 * known exactly. public static final Unit<Length> ASTRONOMIC_UNIT =
 	 * addUnit(SI.ASTRONOMICAL_UNIT);
 	 */
+
 	public static final TransformedUnit<Length> ASTRONOMICAL_UNIT = new TransformedUnit<Length>(
 			"AU", SI.METRE, new MultiplyConverter(149597871000.0));
+
+	/**
+	 * The SI unit for density quantities (standard name <code>m2</code>).
+	 */
 
 	public static final ProductUnit<VolumetricDensity> GRAM_PER_CUBIC_CENTIMETRE = addUnit(
 			new ProductUnit<VolumetricDensity>(SI.GRAM.divide((SIPrefix
