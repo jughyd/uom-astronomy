@@ -5,7 +5,7 @@ import javax.measure.quantity.Time;
 
 import tec.uom.se.function.Nameable;
 
-public interface GeneralProperties extends Nameable {
+public interface GeneralAstronomicalProperties extends Nameable {
 
 	String getName();
 
