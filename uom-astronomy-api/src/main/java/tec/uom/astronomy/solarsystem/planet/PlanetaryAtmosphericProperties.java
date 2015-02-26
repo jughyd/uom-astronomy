@@ -7,6 +7,7 @@ import javax.measure.quantity.Pressure;
 import javax.measure.quantity.Temperature;
 
 import tec.uom.astronomy.solarsystem.properties.atmospheric.CommonAtmosphericProperties;
+import tec.uom.astronomy.solarsystem.properties.general.AstronomicalUtility;
 
 public class PlanetaryAtmosphericProperties extends CommonAtmosphericProperties {
 	private Quantity<Pressure> surfacePressure;
@@ -28,10 +29,10 @@ public class PlanetaryAtmosphericProperties extends CommonAtmosphericProperties 
 		sb.append(PlanetaryAtmosphericProperties.class.getSimpleName());
 		sb.append("- ");
 		sb.append("Surface Pressure: ");
-		sb.append(getSurfacePressure());
+		sb.append(AstronomicalUtility.getValueUnit(getSurfacePressure()));
 		sb.append("; ");
 		sb.append("Mean Surface Temperature: ");
-		sb.append(getMeanSurfaceTemperature());
+		sb.append(AstronomicalUtility.getValueUnit(getMeanSurfaceTemperature()));
 		sb.append("; ");
 		sb.append("Atmospheric Composition: ");
 		sb.append(getAtmosphericComposition());

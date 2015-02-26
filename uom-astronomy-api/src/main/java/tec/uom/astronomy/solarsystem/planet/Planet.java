@@ -3,9 +3,9 @@ package tec.uom.astronomy.solarsystem.planet;
 import javax.measure.Quantity;
 import javax.measure.quantity.Time;
 
-import tec.uom.astronomy.solarsystem.properties.general.GeneralProperties;
+import tec.uom.astronomy.solarsystem.properties.general.GeneralAstronomicalProperties;
 
-public class Planet implements GeneralProperties {
+public class Planet implements GeneralAstronomicalProperties {
 
 	private String name;
 	private Quantity<Time> age;
