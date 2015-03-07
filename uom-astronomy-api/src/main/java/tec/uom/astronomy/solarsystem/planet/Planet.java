@@ -4,6 +4,7 @@ import javax.measure.Quantity;
 import javax.measure.quantity.Time;
 
 import tec.uom.astronomy.solarsystem.properties.general.GeneralAstronomicalProperties;
+import tec.uom.se.util.SI;
 
 public class Planet implements GeneralAstronomicalProperties {
 
@@ -47,22 +48,11 @@ public class Planet implements GeneralAstronomicalProperties {
 			PlanetaryAtmosphericProperties planetaryAtmosphericProperties) {
 		this.planetaryAtmosphericProperties = planetaryAtmosphericProperties;
 	}
-
-	public void setDiscoveredBy(String discoveredBy) {
-		this.discoveredBy = discoveredBy;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public void setAge(Quantity<Time> age) {
-		this.age = age;
-	}
 	
 	@Override
 	public Quantity<Time> getAge() {
-		return age;
+		Quantity<Time> timeInDays = age.to(SI.DAY);
+		return timeInDays;
 	}
 
 	@Override
