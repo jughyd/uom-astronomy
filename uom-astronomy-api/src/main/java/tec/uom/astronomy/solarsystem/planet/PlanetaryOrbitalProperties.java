@@ -1,7 +1,6 @@
 package tec.uom.astronomy.solarsystem.planet;
 
 import javax.measure.Quantity;
-import javax.measure.UnitConverter;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import javax.measure.quantity.Speed;
@@ -43,14 +42,10 @@ public class PlanetaryOrbitalProperties extends CommonOrbitalProperties {
 	}
 
 	public double calculateEccentricity() {
-		UnitConverter periphelionConverter = getPeriphelion().getUnit()
-				.getConverterTo(AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT);
-		double periphelionValue = periphelionConverter
-				.convert((double) getPeriphelion().getValue());
-		UnitConverter aphelionConverter = getAphelion().getUnit()
-				.getConverterTo(AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT);
-		double aphelionValue = aphelionConverter
-				.convert((double) getAphelion().getValue());
+		double periphelionValue = (double) getPeriphelion().to(
+				AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT).getValue();
+		double aphelionValue = (double) getAphelion().to(
+				AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT).getValue();
 		double eccentricity = 0;
 		if (aphelionValue != 0 && periphelionValue != 0) {
 			eccentricity = (aphelionValue - periphelionValue)
@@ -83,13 +78,16 @@ public class PlanetaryOrbitalProperties extends CommonOrbitalProperties {
 		sb.append(AstronomicalUtility.getValueUnit(getOrbitalPeriod()));
 		sb.append("; ");
 		sb.append("Ecliptic Inclination: ");
-		sb.append(AstronomicalUtility.getValueUnit(getInclination().getEclipticInclination()));
+		sb.append(AstronomicalUtility.getValueUnit(getInclination()
+				.getEclipticInclination()));
 		sb.append("; ");
 		sb.append("Invariable Plane Inclination: ");
-		sb.append(AstronomicalUtility.getValueUnit(getInclination().getInvariablePlaneInclination()));
+		sb.append(AstronomicalUtility.getValueUnit(getInclination()
+				.getInvariablePlaneInclination()));
 		sb.append("; ");
 		sb.append("Sun Equatorial Inclination: ");
-		sb.append(AstronomicalUtility.getValueUnit(getInclination().getSunEquatorInclination()));
+		sb.append(AstronomicalUtility.getValueUnit(getInclination()
+				.getSunEquatorInclination()));
 		sb.append("; ");
 		sb.append("Artificial Satellites: ");
 		sb.append(getSatellites().getArtificalSatellite());

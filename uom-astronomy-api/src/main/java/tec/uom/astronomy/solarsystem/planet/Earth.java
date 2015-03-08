@@ -13,6 +13,7 @@ import javax.measure.quantity.Temperature;
 import javax.measure.quantity.Time;
 import javax.measure.quantity.VolumetricDensity;
 
+import tec.uom.astronomy.solarsystem.properties.general.AstronomicalUtility;
 import tec.uom.astronomy.solarsystem.properties.orbital.Inclination;
 import tec.uom.astronomy.solarsystem.properties.orbital.Satellites;
 import tec.uom.astronomy.solarsystem.properties.physical.Albedo;
@@ -168,7 +169,7 @@ public class Earth extends Planet {
 		sb.append(getName());
 		sb.append("; ");
 		sb.append("Age: ");
-		sb.append(getAge().getValue() + " year");
+		sb.append(AstronomicalUtility.getValueUnit(getAge()));
 		sb.append("; ");
 		sb.append("Discovered By: ");
 		sb.append(getDiscoveredBy());

@@ -64,28 +64,20 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 	}
 
 	public double flattening() {
-		UnitConverter polarRadiusConverter = getPolarRadius().getUnit()
-				.getConverterTo(SIPrefix.KILO(SI.METRE));
-		double polarRadiusValue = polarRadiusConverter
-				.convert((double) getPolarRadius().getValue());
-		UnitConverter equatorialRadiusConverter = getEquatorialRadius()
-				.getUnit().getConverterTo(SIPrefix.KILO(SI.METRE));
-		double equatorialRadiusValue = equatorialRadiusConverter
-				.convert((double) getEquatorialRadius().getValue());
+		double polarRadiusValue = (double) getPolarRadius().to(
+				SIPrefix.KILO(SI.METRE)).getValue();
+		double equatorialRadiusValue = (double) getEquatorialRadius().to(
+				SIPrefix.KILO(SI.METRE)).getValue();
 		double flatten = (equatorialRadiusValue - polarRadiusValue)
 				/ equatorialRadiusValue;
 		return flatten;
 	}
 
 	public Quantity<Area> surfaceArea() {
-		UnitConverter polarRadiusConverter = getPolarRadius().getUnit()
-				.getConverterTo(SIPrefix.KILO(SI.METRE));
-		double polarRadiusValue = polarRadiusConverter
-				.convert((double) getPolarRadius().getValue());
-		UnitConverter equatorialRadiusConverter = getEquatorialRadius()
-				.getUnit().getConverterTo(SIPrefix.KILO(SI.METRE));
-		double equatorialRadiusValue = equatorialRadiusConverter
-				.convert((double) getEquatorialRadius().getValue());
+		double polarRadiusValue = (double) getPolarRadius().to(
+				SIPrefix.KILO(SI.METRE)).getValue();
+		double equatorialRadiusValue = (double) getEquatorialRadius().to(
+				SIPrefix.KILO(SI.METRE)).getValue();
 		double ellipticalEccentricity = 0;
 		double surfaceAreaValue = 0;
 		if (polarRadiusValue != 0 && equatorialRadiusValue != 0) {
@@ -126,18 +118,12 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 	}
 
 	public Quantity<Volume> planetVolume() {
-		UnitConverter polarRadiusConverter = getPolarRadius().getUnit()
-				.getConverterTo(SIPrefix.KILO(SI.METRE));
-		double polarRadiusValue = polarRadiusConverter
-				.convert((double) getPolarRadius().getValue());
-		UnitConverter equatorialRadiusConverter = getEquatorialRadius()
-				.getUnit().getConverterTo(SIPrefix.KILO(SI.METRE));
-		double equatorialRadiusValue = equatorialRadiusConverter
-				.convert((double) getEquatorialRadius().getValue());
-		UnitConverter meanRadiusConverter = getMeanRadius().getUnit()
-				.getConverterTo(SIPrefix.KILO(SI.METRE));
-		double meanRadiusValue = meanRadiusConverter
-				.convert((double) getMeanRadius().getValue());
+		double polarRadiusValue = (double) getPolarRadius().to(
+				SIPrefix.KILO(SI.METRE)).getValue();
+		double equatorialRadiusValue = (double) getEquatorialRadius().to(
+				SIPrefix.KILO(SI.METRE)).getValue();
+		double meanRadiusValue = (double) getMeanRadius().to(
+				SIPrefix.KILO(SI.METRE)).getValue();
 		double volumeValue = 0;
 		if (polarRadiusValue != 0 && equatorialRadiusValue != 0
 				&& meanRadiusValue != 0) {
@@ -155,14 +141,10 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 	}
 
 	public Quantity<Acceleration> surfaceGravity() {
-		UnitConverter meanRadiusConverter = getMeanRadius().getUnit()
-				.getConverterTo(SIPrefix.KILO(SI.METRE));
-		double meanRadiusValue = meanRadiusConverter
-				.convert((double) getMeanRadius().getValue());
-		UnitConverter massConverter = getAbsoluteMass().getUnit()
-				.getConverterTo(SI.KILOGRAM);
-		double massValue = massConverter.convert((double) getAbsoluteMass()
-				.getValue());
+		double meanRadiusValue = (double) getMeanRadius().to(
+				SIPrefix.KILO(SI.METRE)).getValue();
+		double massValue = (double) getAbsoluteMass().to(SI.KILOGRAM)
+				.getValue();
 		double gravityValue = (AstronomicalConstants.EARTH_GRAVITATIONAL_CONSTANT * massValue)
 				/ Math.pow(meanRadiusValue, 2);
 		Quantity<Acceleration> gravity = QuantityFactoryProvider
@@ -173,14 +155,10 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 
 	@Override
 	public Quantity<Speed> escapeVelocity() {
-		UnitConverter meanRadiusConverter = getMeanRadius().getUnit()
-				.getConverterTo(SIPrefix.KILO(SI.METRE));
-		double meanRadiusValue = meanRadiusConverter
-				.convert((double) getMeanRadius().getValue());
-		UnitConverter massConverter = getAbsoluteMass().getUnit()
-				.getConverterTo(SI.KILOGRAM);
-		double massValue = massConverter.convert((double) getAbsoluteMass()
-				.getValue());
+		double meanRadiusValue = (double) getMeanRadius().to(
+				SIPrefix.KILO(SI.METRE)).getValue();
+		double massValue = (double) getAbsoluteMass().to(SI.KILOGRAM)
+				.getValue();
 		double escVelResult = Math
 				.sqrt((2 * AstronomicalConstants.EARTH_GRAVITATIONAL_CONSTANT * massValue)
 						/ meanRadiusValue);
@@ -205,13 +183,16 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 		sb.append(AstronomicalUtility.getValueUnit(getEquatorialRadius()));
 		sb.append("; ");
 		sb.append("Equatorial Circumference: ");
-		sb.append(AstronomicalUtility.getValueUnit(getCircumference().getEquatorialCircumference()));
+		sb.append(AstronomicalUtility.getValueUnit(getCircumference()
+				.getEquatorialCircumference()));
 		sb.append("; ");
 		sb.append("Meridonial Circumference: ");
-		sb.append(AstronomicalUtility.getValueUnit(getCircumference().getMeridonialCircumference()));
+		sb.append(AstronomicalUtility.getValueUnit(getCircumference()
+				.getMeridonialCircumference()));
 		sb.append("; ");
 		sb.append("Equatorial Rotational Velocity: ");
-		sb.append(AstronomicalUtility.getValueUnit(getEquatorialRotationVelocity()));
+		sb.append(AstronomicalUtility
+				.getValueUnit(getEquatorialRotationVelocity()));
 		sb.append("; ");
 		sb.append("Sidereal Rotation Period: ");
 		sb.append(AstronomicalUtility.getValueUnit(getSiderealRotationPeriod()));
