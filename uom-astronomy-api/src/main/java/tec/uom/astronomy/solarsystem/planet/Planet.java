@@ -4,6 +4,7 @@ import javax.measure.Quantity;
 import javax.measure.quantity.Time;
 
 import tec.uom.astronomy.solarsystem.properties.general.GeneralAstronomicalProperties;
+import tec.uom.se.util.SI;
 
 public class Planet implements GeneralAstronomicalProperties {
 
@@ -25,7 +26,7 @@ public class Planet implements GeneralAstronomicalProperties {
 		return planetaryPhysicalProperties;
 	}
 
-	public void setPlanetaryPhysicalProperties(
+	protected void setPlanetaryPhysicalProperties(
 			PlanetaryPhysicalProperties planetaryPhysicalProperties) {
 		this.planetaryPhysicalProperties = planetaryPhysicalProperties;
 	}
@@ -34,7 +35,7 @@ public class Planet implements GeneralAstronomicalProperties {
 		return planetaryOrbitalProperties;
 	}
 
-	public void setPlanetaryOrbitalProperties(
+	protected void setPlanetaryOrbitalProperties(
 			PlanetaryOrbitalProperties planetaryOrbitalProperties) {
 		this.planetaryOrbitalProperties = planetaryOrbitalProperties;
 	}
@@ -43,26 +44,15 @@ public class Planet implements GeneralAstronomicalProperties {
 		return planetaryAtmosphericProperties;
 	}
 
-	public void setPlanetaryAtmosphericProperties(
+	protected void setPlanetaryAtmosphericProperties(
 			PlanetaryAtmosphericProperties planetaryAtmosphericProperties) {
 		this.planetaryAtmosphericProperties = planetaryAtmosphericProperties;
-	}
-
-	public void setDiscoveredBy(String discoveredBy) {
-		this.discoveredBy = discoveredBy;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public void setAge(Quantity<Time> age) {
-		this.age = age;
 	}
 	
 	@Override
 	public Quantity<Time> getAge() {
-		return age;
+		Quantity<Time> timeInDays = age.to(SI.DAY);
+		return timeInDays;
 	}
 
 	@Override
