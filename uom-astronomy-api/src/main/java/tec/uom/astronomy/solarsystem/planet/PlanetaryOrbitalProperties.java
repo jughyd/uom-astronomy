@@ -42,14 +42,16 @@ public class PlanetaryOrbitalProperties extends CommonOrbitalProperties {
 	}
 
 	public double calculateEccentricity() {
-		double periphelionValue = (double) getPeriphelion().to(
-				AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT).getValue();
-		double aphelionValue = (double) getAphelion().to(
-				AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT).getValue();
 		double eccentricity = 0;
-		if (aphelionValue != 0 && periphelionValue != 0) {
-			eccentricity = (aphelionValue - periphelionValue)
-					/ (aphelionValue + periphelionValue);
+		if (getPeriphelion() != null && getAphelion() != null) {
+			double periphelionValue = (double) getPeriphelion().to(
+					AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT).getValue();
+			double aphelionValue = (double) getAphelion().to(
+					AstronomicalSystemOfUnits.ASTRONOMICAL_UNIT).getValue();
+			if (aphelionValue != 0 && periphelionValue != 0) {
+				eccentricity = (aphelionValue - periphelionValue)
+						/ (aphelionValue + periphelionValue);
+			}
 		}
 		return eccentricity;
 	}
@@ -59,36 +61,55 @@ public class PlanetaryOrbitalProperties extends CommonOrbitalProperties {
 		StringBuilder sb = new StringBuilder();
 		sb.append(PlanetaryOrbitalProperties.class.getSimpleName());
 		sb.append("- ");
-		sb.append("Mean Anomaly: ");
-		sb.append(AstronomicalUtility.getValueUnit(getMeanAnomaly()));
-		sb.append("; ");
-		sb.append("Average Orbital Speed: ");
-		sb.append(AstronomicalUtility.getValueUnit(getAverageOrbitalSpeed()));
-		sb.append("; ");
-		sb.append("Aphelion: ");
-		sb.append(AstronomicalUtility.getValueUnit(getAphelion()));
-		sb.append("; ");
-		sb.append("Periphelion: ");
-		sb.append(AstronomicalUtility.getValueUnit(getPeriphelion()));
-		sb.append("; ");
-		sb.append("Semi Major Axis: ");
-		sb.append(AstronomicalUtility.getValueUnit(getSemiMajorAxis()));
-		sb.append("; ");
-		sb.append("Orbital Period: ");
-		sb.append(AstronomicalUtility.getValueUnit(getOrbitalPeriod()));
-		sb.append("; ");
-		sb.append("Ecliptic Inclination: ");
-		sb.append(AstronomicalUtility.getValueUnit(getInclination()
-				.getEclipticInclination()));
-		sb.append("; ");
-		sb.append("Invariable Plane Inclination: ");
-		sb.append(AstronomicalUtility.getValueUnit(getInclination()
-				.getInvariablePlaneInclination()));
-		sb.append("; ");
-		sb.append("Sun Equatorial Inclination: ");
-		sb.append(AstronomicalUtility.getValueUnit(getInclination()
-				.getSunEquatorInclination()));
-		sb.append("; ");
+		if (getMeanAnomaly() != null) {
+			sb.append("Mean Anomaly: ");
+			sb.append(AstronomicalUtility.getValueUnit(getMeanAnomaly()));
+			sb.append("; ");
+		}
+		if (getAverageOrbitalSpeed() != null) {
+			sb.append("Average Orbital Speed: ");
+			sb.append(AstronomicalUtility
+					.getValueUnit(getAverageOrbitalSpeed()));
+			sb.append("; ");
+		}
+		if (getAphelion() != null) {
+			sb.append("Aphelion: ");
+			sb.append(AstronomicalUtility.getValueUnit(getAphelion()));
+			sb.append("; ");
+		}
+		if (getPeriphelion() != null) {
+			sb.append("Periphelion: ");
+			sb.append(AstronomicalUtility.getValueUnit(getPeriphelion()));
+			sb.append("; ");
+		}
+		if (getSemiMajorAxis() != null) {
+			sb.append("Semi Major Axis: ");
+			sb.append(AstronomicalUtility.getValueUnit(getSemiMajorAxis()));
+			sb.append("; ");
+		}
+		if (getOrbitalPeriod() != null) {
+			sb.append("Orbital Period: ");
+			sb.append(AstronomicalUtility.getValueUnit(getOrbitalPeriod()));
+			sb.append("; ");
+		}
+		if (getInclination().getEclipticInclination() != null) {
+			sb.append("Ecliptic Inclination: ");
+			sb.append(AstronomicalUtility.getValueUnit(getInclination()
+					.getEclipticInclination()));
+			sb.append("; ");
+		}
+		if (getInclination().getInvariablePlaneInclination() != null) {
+			sb.append("Invariable Plane Inclination: ");
+			sb.append(AstronomicalUtility.getValueUnit(getInclination()
+					.getInvariablePlaneInclination()));
+			sb.append("; ");
+		}
+		if (getInclination().getSunEquatorInclination() != null) {
+			sb.append("Sun Equatorial Inclination: ");
+			sb.append(AstronomicalUtility.getValueUnit(getInclination()
+					.getSunEquatorInclination()));
+			sb.append("; ");
+		}
 		sb.append("Artificial Satellites: ");
 		sb.append(getSatellites().getArtificalSatellite());
 		sb.append("; ");

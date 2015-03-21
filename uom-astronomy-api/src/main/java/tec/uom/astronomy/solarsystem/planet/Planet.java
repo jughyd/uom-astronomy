@@ -26,7 +26,7 @@ public class Planet implements GeneralAstronomicalProperties {
 		return planetaryPhysicalProperties;
 	}
 
-	public void setPlanetaryPhysicalProperties(
+	protected void setPlanetaryPhysicalProperties(
 			PlanetaryPhysicalProperties planetaryPhysicalProperties) {
 		this.planetaryPhysicalProperties = planetaryPhysicalProperties;
 	}
@@ -35,7 +35,7 @@ public class Planet implements GeneralAstronomicalProperties {
 		return planetaryOrbitalProperties;
 	}
 
-	public void setPlanetaryOrbitalProperties(
+	protected void setPlanetaryOrbitalProperties(
 			PlanetaryOrbitalProperties planetaryOrbitalProperties) {
 		this.planetaryOrbitalProperties = planetaryOrbitalProperties;
 	}
@@ -44,7 +44,7 @@ public class Planet implements GeneralAstronomicalProperties {
 		return planetaryAtmosphericProperties;
 	}
 
-	public void setPlanetaryAtmosphericProperties(
+	protected void setPlanetaryAtmosphericProperties(
 			PlanetaryAtmosphericProperties planetaryAtmosphericProperties) {
 		this.planetaryAtmosphericProperties = planetaryAtmosphericProperties;
 	}

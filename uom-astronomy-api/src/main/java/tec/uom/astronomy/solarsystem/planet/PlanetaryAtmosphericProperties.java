@@ -28,14 +28,20 @@ public class PlanetaryAtmosphericProperties extends CommonAtmosphericProperties 
 		StringBuilder sb = new StringBuilder();
 		sb.append(PlanetaryAtmosphericProperties.class.getSimpleName());
 		sb.append("- ");
-		sb.append("Surface Pressure: ");
-		sb.append(AstronomicalUtility.getValueUnit(getSurfacePressure()));
-		sb.append("; ");
-		sb.append("Mean Surface Temperature: ");
-		sb.append(AstronomicalUtility.getValueUnit(getMeanSurfaceTemperature()));
-		sb.append("; ");
-		sb.append("Atmospheric Composition: ");
-		sb.append(getAtmosphericComposition());
+		if(getSurfacePressure() != null){
+			sb.append("Surface Pressure: ");
+			sb.append(AstronomicalUtility.getValueUnit(getSurfacePressure()));
+			sb.append("; ");
+		}
+		if(getMeanSurfaceTemperature() != null){
+			sb.append("Mean Surface Temperature: ");
+			sb.append(AstronomicalUtility.getValueUnit(getMeanSurfaceTemperature()));
+			sb.append("; ");
+		}
+		if(getAtmosphericComposition() != null){
+			sb.append("Atmospheric Composition: ");
+			sb.append(getAtmosphericComposition());
+		}
 		return sb.toString();
 	}
 }
