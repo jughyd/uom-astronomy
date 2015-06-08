@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>tec.uom.domain</groupId>
+	<groupId>space.uom</groupId>
 	<artifactId>uom-astronomy</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -13,9 +13,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<ri.version>0.8-SNAPSHOT</ri.version>
-		<se.version>0.7-SNAPSHOT</se.version>
-		<lib.version>0.5</lib.version>
+		<jsr.version>0.8-SNAPSHOT</jsr.version>
+		<se.version>0.8-SNAPSHOT</se.version>
+		<lib.version>0.6</lib.version>
 	</properties>
 	<name>UoM Astronomy</name>
 
@@ -37,7 +37,7 @@
 			<dependency>
 				<groupId>javax.measure</groupId>
 				<artifactId>unit-api</artifactId>
-				<version>${ri.version}</version>
+				<version>${jsr.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>tec.units</groupId>
