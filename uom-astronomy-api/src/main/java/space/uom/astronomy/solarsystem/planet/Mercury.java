@@ -11,7 +11,7 @@ import javax.measure.quantity.Pressure;
 import javax.measure.quantity.Speed;
 import javax.measure.quantity.Temperature;
 import javax.measure.quantity.Time;
-import javax.measure.quantity.VolumetricDensity;
+import javax.measure.quantity.MassDensity;
 
 import space.uom.astronomy.solarsystem.properties.general.AstronomicalUtility;
 import space.uom.astronomy.solarsystem.properties.orbital.Inclination;
@@ -64,8 +64,8 @@ public class Mercury extends Planet {
 				.getQuantityFactory(Speed.class).create(3.026,
 						SI.METRES_PER_SECOND);
 
-		Quantity<VolumetricDensity> meanDensity = QuantityFactoryProvider
-				.getQuantityFactory(VolumetricDensity.class).create(5.427,
+		Quantity<MassDensity> meanDensity = QuantityFactoryProvider
+				.getQuantityFactory(MassDensity.class).create(5.427,
 						AstronomicalSystemOfUnits.GRAM_PER_CUBIC_CENTIMETRE);
 
 		Quantity<Length> meanRadius = QuantityFactoryProvider

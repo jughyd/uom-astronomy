@@ -11,7 +11,7 @@ import javax.measure.quantity.Pressure;
 import javax.measure.quantity.Speed;
 import javax.measure.quantity.Temperature;
 import javax.measure.quantity.Time;
-import javax.measure.quantity.VolumetricDensity;
+import javax.measure.quantity.MassDensity;
 
 import space.uom.astronomy.solarsystem.properties.general.AstronomicalUtility;
 import space.uom.astronomy.solarsystem.properties.orbital.Inclination;
@@ -63,8 +63,8 @@ public class Earth extends Planet {
 				.getQuantityFactory(Speed.class).create(6378.1,
 						SI.METRES_PER_SECOND);
 
-		Quantity<VolumetricDensity> meanDensity = QuantityFactoryProvider
-				.getQuantityFactory(VolumetricDensity.class).create(5.514,
+		Quantity<MassDensity> meanDensity = QuantityFactoryProvider
+				.getQuantityFactory(MassDensity.class).create(5.514,
 						AstronomicalSystemOfUnits.GRAM_PER_CUBIC_CENTIMETRE);
 
 		Quantity<Length> meanRadius = QuantityFactoryProvider
