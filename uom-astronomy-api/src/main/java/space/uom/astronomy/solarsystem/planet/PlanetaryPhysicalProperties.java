@@ -8,7 +8,7 @@ import javax.measure.quantity.Mass;
 import javax.measure.quantity.Speed;
 import javax.measure.quantity.Time;
 import javax.measure.quantity.Volume;
-import javax.measure.quantity.MassDensity;
+import si.uom.quantity.Density;
 
 import space.uom.astronomy.solarsystem.constants.AstronomicalConstants;
 import space.uom.astronomy.solarsystem.properties.general.AstronomicalUtility;
@@ -32,7 +32,7 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 			Quantity<Length> equRadius, Quantity<Speed> equRotationVelocity,
 			double momOfInertia, Circumference circum,
 			Quantity<Time> sidRotationPeriod, Quantity<Length> radius,
-			Quantity<MassDensity> density, Quantity<Mass> mass,
+			Quantity<Density> density, Quantity<Mass> mass,
 			Albedo albdo) {
 		super(sidRotationPeriod, radius, density, mass, albdo);
 		this.polarRadius = polRadius;

@@ -15,6 +15,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<jsr.version>0.8-SNAPSHOT</jsr.version>
 		<se.version>0.8-SNAPSHOT</se.version>
+		<si.version>0.4-SNAPSHOT</si.version>
 		<lib.version>0.6</lib.version>
 	</properties>
 	<name>UoM Astronomy</name>
@@ -54,6 +55,11 @@
 				<artifactId>uom-lib</artifactId>
 				<version>${lib.version}</version>
 			</dependency>
+			<dependency>
+                <groupId>si.uom</groupId>
+                <artifactId>si-quantity</artifactId>
+                <version>${si.version}</version>
+            </dependency>
 		</dependencies>
 	</dependencyManagement>
 </project>

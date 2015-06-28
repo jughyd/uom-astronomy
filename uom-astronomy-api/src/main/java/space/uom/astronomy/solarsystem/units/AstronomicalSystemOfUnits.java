@@ -8,7 +8,7 @@ import javax.measure.quantity.Area;
 import javax.measure.quantity.Length;
 import javax.measure.quantity.Mass;
 import javax.measure.quantity.Volume;
-import javax.measure.quantity.MassDensity;
+import si.uom.quantity.Density;
 
 import tec.uom.se.AbstractSystemOfUnits;
 import tec.uom.se.AbstractUnit;
@@ -73,9 +73,9 @@ public class AstronomicalSystemOfUnits extends AbstractSystemOfUnits {
 	 * The SI unit for density quantities (standard name <code>m2</code>).
 	 */
 
-	public static final ProductUnit<MassDensity> GRAM_PER_CUBIC_CENTIMETRE = addUnit(
-			new ProductUnit<MassDensity>(SI.GRAM.divide((MetricPrefix
-					.CENTI(SI.METRE)).pow(3))), MassDensity.class);
+	public static final ProductUnit<Density> GRAM_PER_CUBIC_CENTIMETRE = addUnit(
+			new ProductUnit<Density>(SI.GRAM.divide((MetricPrefix
+					.CENTI(SI.METRE)).pow(3))), Density.class);
 
 	/**
 	 * The SI unit for area quantities (standard name <code>m2</code>).

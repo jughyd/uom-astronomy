@@ -7,11 +7,10 @@ import javax.measure.Quantity;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import javax.measure.quantity.Mass;
-import javax.measure.quantity.Pressure;
 import javax.measure.quantity.Speed;
 import javax.measure.quantity.Temperature;
 import javax.measure.quantity.Time;
-import javax.measure.quantity.MassDensity;
+import si.uom.quantity.Density;
 
 import space.uom.astronomy.solarsystem.properties.general.AstronomicalUtility;
 import space.uom.astronomy.solarsystem.properties.orbital.Inclination;
@@ -23,7 +22,7 @@ import tec.uom.se.spi.QuantityFactoryProvider;
 import tec.uom.se.unit.SI;
 import tec.uom.se.unit.MetricPrefix;
 import static tec.uom.se.quantity.Quantities.getQuantity;
-import static tec.uom.se.unit.ucum.UCUM.YEAR;
+import static tec.uom.se.unit.Units.YEAR;
 
 public class Mercury extends Planet {
     public Mercury() {
@@ -32,7 +31,6 @@ public class Mercury extends Planet {
         setMercuryOrbitalProperties();
         setMercuryAtmosphericProperties();
     }
-
 
     private PlanetaryPhysicalProperties mercuryPhysicalProperties;
     private PlanetaryOrbitalProperties mercuryOrbitalProperties;
@@ -45,7 +43,6 @@ public class Mercury extends Planet {
     public PlanetaryAtmosphericProperties getMercuryAtmosphericProperties() {
         return mercuryAtmosphericProperties;
     }
-
 
 	private void setMercuryPhysicalProperties() {
 		Albedo albedo = new Albedo();
@@ -64,8 +61,8 @@ public class Mercury extends Planet {
 				.getQuantityFactory(Speed.class).create(3.026,
 						SI.METRES_PER_SECOND);
 
-		Quantity<MassDensity> meanDensity = QuantityFactoryProvider
-				.getQuantityFactory(MassDensity.class).create(5.427,
+		Quantity<Density> meanDensity = QuantityFactoryProvider
+				.getQuantityFactory(Density.class).create(5.427,
 						AstronomicalSystemOfUnits.GRAM_PER_CUBIC_CENTIMETRE);
 
 		Quantity<Length> meanRadius = QuantityFactoryProvider

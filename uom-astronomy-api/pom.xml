@@ -14,11 +14,14 @@
         <dependency>
             <groupId>javax.measure</groupId>
             <artifactId>unit-api</artifactId>
-        </dependency>
-        
+        </dependency>     
         <dependency>
             <groupId>tec.uom</groupId>
             <artifactId>uom-se</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>si.uom</groupId>
+            <artifactId>si-quantity</artifactId>
         </dependency>
         
         <dependency>
