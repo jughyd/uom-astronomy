@@ -20,7 +20,7 @@ import space.uom.astronomy.solarsystem.properties.physical.Albedo;
 import space.uom.astronomy.solarsystem.properties.physical.Circumference;
 import space.uom.astronomy.solarsystem.units.AstronomicalSystemOfUnits;
 import tec.uom.se.spi.QuantityFactoryProvider;
-import tec.uom.se.unit.SI;
+import tec.uom.se.unit.Units;
 import tec.uom.se.unit.MetricPrefix;
 import static tec.uom.se.quantity.Quantities.getQuantity;
 import static tec.uom.se.unit.Units.YEAR;
@@ -45,11 +45,11 @@ public class Earth extends Planet {
 		Circumference circumference = new Circumference();
 		circumference.setEquatorialCircumference(QuantityFactoryProvider
 				.getQuantityFactory(Length.class).create(40075.017,
-						MetricPrefix.KILO(SI.METRE)));
+						MetricPrefix.KILO(Units.METRE)));
 
 		circumference.setMeridonialCircumference(QuantityFactoryProvider
 				.getQuantityFactory(Length.class).create(40007.86,
-						MetricPrefix.KILO(SI.METRE)));
+						MetricPrefix.KILO(Units.METRE)));
 
 		Quantity<Mass> absoluteMass = QuantityFactoryProvider
 				.getQuantityFactory(Mass.class).create(3 * Math.pow(10, -6),
@@ -57,11 +57,11 @@ public class Earth extends Planet {
 
 		Quantity<Length> equatorialRadius = QuantityFactoryProvider
 				.getQuantityFactory(Length.class).create(6378.1,
-						MetricPrefix.KILO(SI.METRE));
+						MetricPrefix.KILO(Units.METRE));
 
 		Quantity<Speed> equatorialRotationVelocity = QuantityFactoryProvider
 				.getQuantityFactory(Speed.class).create(6378.1,
-						SI.METRES_PER_SECOND);
+						Units.METRES_PER_SECOND);
 
 		Quantity<Density> meanDensity = QuantityFactoryProvider
 				.getQuantityFactory(Density.class).create(5.514,
@@ -69,16 +69,16 @@ public class Earth extends Planet {
 
 		Quantity<Length> meanRadius = QuantityFactoryProvider
 				.getQuantityFactory(Length.class).create(6371.0,
-						MetricPrefix.KILO(SI.METRE));
+						MetricPrefix.KILO(Units.METRE));
 
 		double momentOfInertia = 0.3307;
 
 		Quantity<Length> polarRadius = QuantityFactoryProvider
 				.getQuantityFactory(Length.class).create(6356.8,
-						MetricPrefix.KILO(SI.METRE));
+						MetricPrefix.KILO(Units.METRE));
 
 		Quantity<Time> siderealRotationPeriod = QuantityFactoryProvider
-				.getQuantityFactory(Time.class).create(0.99726968, SI.DAY);
+				.getQuantityFactory(Time.class).create(0.99726968, Units.DAY);
 
 		PlanetaryPhysicalProperties earthPhysicalProperties = new PlanetaryPhysicalProperties(
 				polarRadius, equatorialRadius, equatorialRotationVelocity,
@@ -95,15 +95,15 @@ public class Earth extends Planet {
 		Inclination inclination = new Inclination();
 		inclination.setEclipticInclination(QuantityFactoryProvider
 				.getQuantityFactory(Angle.class).create(0.00005,
-						SI.DEGREE_ANGLE));
+						Units.DEGREE_ANGLE));
 
 		inclination.setInvariablePlaneInclination(QuantityFactoryProvider
 				.getQuantityFactory(Angle.class).create(1.57869,
-						SI.DEGREE_ANGLE));
+						Units.DEGREE_ANGLE));
 		inclination
 				.setSunEquatorInclination(QuantityFactoryProvider
 						.getQuantityFactory(Angle.class).create(7.155,
-								SI.DEGREE_ANGLE));
+								Units.DEGREE_ANGLE));
 
 		Quantity<Length> aphelion = QuantityFactoryProvider.getQuantityFactory(
 				Length.class).create(1.01559,
@@ -111,14 +111,14 @@ public class Earth extends Planet {
 
 		Quantity<Speed> averageOrbitalSpeed = QuantityFactoryProvider
 				.getQuantityFactory(Speed.class).create(29777.7778,
-						SI.METRES_PER_SECOND);
+						Units.METRES_PER_SECOND);
 
 		Quantity<Angle> meanAnomaly = QuantityFactoryProvider
 				.getQuantityFactory(Angle.class)
-				.create(355.53, SI.DEGREE_ANGLE);
+				.create(355.53, Units.DEGREE_ANGLE);
 
 		Quantity<Time> orbitalPeriod = QuantityFactoryProvider
-				.getQuantityFactory(Time.class).create(365.256363004, SI.DAY);
+				.getQuantityFactory(Time.class).create(365.256363004, Units.DAY);
 
 		Quantity<Length> periphelion = QuantityFactoryProvider
 				.getQuantityFactory(Length.class).create(0.9832687,
@@ -142,11 +142,11 @@ public class Earth extends Planet {
 		atmospherComposition.add("Carbon Dioxide");
 
 		Quantity<Temperature> surfaceTemperature = QuantityFactoryProvider
-				.getQuantityFactory(Temperature.class).create(288, SI.KELVIN);
+				.getQuantityFactory(Temperature.class).create(288, Units.KELVIN);
 
 		Quantity<Pressure> surfPressure = QuantityFactoryProvider
 				.getQuantityFactory(Pressure.class).create(101.325,
-						MetricPrefix.KILO(SI.PASCAL));
+						MetricPrefix.KILO(Units.PASCAL));
 
 		PlanetaryAtmosphericProperties earthAtmosphericProperties = new PlanetaryAtmosphericProperties(
 				surfPressure, surfaceTemperature, atmospherComposition);

@@ -15,7 +15,7 @@ import tec.uom.se.AbstractUnit;
 import tec.uom.se.function.MultiplyConverter;
 import tec.uom.se.unit.ProductUnit;
 import tec.uom.se.unit.TransformedUnit;
-import tec.uom.se.unit.SI;
+import tec.uom.se.unit.Units;
 import tec.uom.se.unit.MetricPrefix;
 
 public class AstronomicalSystemOfUnits extends AbstractSystemOfUnits {
@@ -54,7 +54,7 @@ public class AstronomicalSystemOfUnits extends AbstractSystemOfUnits {
 	 */
 
 	public static final TransformedUnit<Mass> SOLAR_MASS = new TransformedUnit<Mass>(
-			"M☉", SI.KILOGRAM, new MultiplyConverter(1.9891 * Math.pow(10, 30)));
+			"M☉", Units.KILOGRAM, new MultiplyConverter(1.9891 * Math.pow(10, 30)));
 
 	/**
 	 * A length unit accepted for use with SI units (standard name
@@ -63,33 +63,33 @@ public class AstronomicalSystemOfUnits extends AbstractSystemOfUnits {
 	 * system, the heliocentric gravitation constant is (0.017 202 098 95)2
 	 * ua3·d-2. The value must be obtained by experiment, and is therefore not
 	 * known exactly. public static final Unit<Length> ASTRONOMIC_UNIT =
-	 * addUnit(SI.ASTRONOMICAL_UNIT);
+	 * addUnit(Units.ASTRONOMICAL_UNIT);
 	 */
 
 	public static final TransformedUnit<Length> ASTRONOMICAL_UNIT = new TransformedUnit<Length>(
-			"AU", SI.METRE, new MultiplyConverter(149597871000.0));
+			"AU", Units.METRE, new MultiplyConverter(149597871000.0));
 
 	/**
 	 * The SI unit for density quantities (standard name <code>m2</code>).
 	 */
 
 	public static final ProductUnit<Density> GRAM_PER_CUBIC_CENTIMETRE = addUnit(
-			new ProductUnit<Density>(SI.GRAM.divide((MetricPrefix
-					.CENTI(SI.METRE)).pow(3))), Density.class);
+			new ProductUnit<Density>(Units.GRAM.divide((MetricPrefix
+					.CENTI(Units.METRE)).pow(3))), Density.class);
 
 	/**
 	 * The SI unit for area quantities (standard name <code>m2</code>).
 	 */
 	public static final ProductUnit<Area> SQUARE_KILOMETRE = addUnit(
-			new ProductUnit<Area>(MetricPrefix.KILO(SI.METRE).multiply(
-					MetricPrefix.KILO(SI.METRE))), Area.class);
+			new ProductUnit<Area>(MetricPrefix.KILO(Units.METRE).multiply(
+					MetricPrefix.KILO(Units.METRE))), Area.class);
 
 	/**
 	 * The SI unit for volume quantities (standard name <code>m3</code>).
 	 */
 	public static final ProductUnit<Volume> CUBIC_KILOMETRE = addUnit(
 			new ProductUnit<Volume>(SQUARE_KILOMETRE.multiply(MetricPrefix
-					.KILO(SI.METRE))), Volume.class);
+					.KILO(Units.METRE))), Volume.class);
 
 	// ///////////////////
 	// Collection View //

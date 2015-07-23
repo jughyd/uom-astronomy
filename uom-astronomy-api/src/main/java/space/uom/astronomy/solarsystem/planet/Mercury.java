@@ -19,7 +19,7 @@ import space.uom.astronomy.solarsystem.properties.physical.Albedo;
 import space.uom.astronomy.solarsystem.properties.physical.Circumference;
 import space.uom.astronomy.solarsystem.units.AstronomicalSystemOfUnits;
 import tec.uom.se.spi.QuantityFactoryProvider;
-import tec.uom.se.unit.SI;
+import tec.uom.se.unit.Units;
 import tec.uom.se.unit.MetricPrefix;
 import static tec.uom.se.quantity.Quantities.getQuantity;
 import static tec.uom.se.unit.Units.YEAR;
@@ -51,15 +51,15 @@ public class Mercury extends Planet {
 		Circumference circumference = new Circumference();
 		circumference.setEquatorialCircumference(QuantityFactoryProvider
 				.getQuantityFactory(Length.class).create(15329,
-						MetricPrefix.KILO(SI.METRE)));
+						MetricPrefix.KILO(Units.METRE)));
 
 		Quantity<Mass> absoluteMass = QuantityFactoryProvider
 				.getQuantityFactory(Mass.class).create(3.3022 * Math.pow(10, 23),
-						SI.KILOGRAM);
+						Units.KILOGRAM);
 
 		Quantity<Speed> equatorialRotationVelocity = QuantityFactoryProvider
 				.getQuantityFactory(Speed.class).create(3.026,
-						SI.METRES_PER_SECOND);
+						Units.METRES_PER_SECOND);
 
 		Quantity<Density> meanDensity = QuantityFactoryProvider
 				.getQuantityFactory(Density.class).create(5.427,
@@ -67,12 +67,12 @@ public class Mercury extends Planet {
 
 		Quantity<Length> meanRadius = QuantityFactoryProvider
 				.getQuantityFactory(Length.class).create(2439.7,
-						MetricPrefix.KILO(SI.METRE));
+						MetricPrefix.KILO(Units.METRE));
 
 		double momentOfInertia = 0.346;
 
 		Quantity<Time> siderealRotationPeriod = QuantityFactoryProvider
-				.getQuantityFactory(Time.class).create(58.646, SI.DAY);
+				.getQuantityFactory(Time.class).create(58.646, Units.DAY);
 
 		PlanetaryPhysicalProperties mercuryPhysicalProperties = new PlanetaryPhysicalProperties(
 				null, null, equatorialRotationVelocity,
@@ -89,15 +89,15 @@ public class Mercury extends Planet {
 		Inclination inclination = new Inclination();
 		inclination.setEclipticInclination(QuantityFactoryProvider
 				.getQuantityFactory(Angle.class).create(7.005,
-						SI.DEGREE_ANGLE));
+						Units.DEGREE_ANGLE));
 
 		inclination.setInvariablePlaneInclination(QuantityFactoryProvider
 				.getQuantityFactory(Angle.class).create(6.34,
-						SI.DEGREE_ANGLE));
+						Units.DEGREE_ANGLE));
 		inclination
 				.setSunEquatorInclination(QuantityFactoryProvider
 						.getQuantityFactory(Angle.class).create(3.38,
-								SI.DEGREE_ANGLE));
+								Units.DEGREE_ANGLE));
 
 		Quantity<Length> aphelion = QuantityFactoryProvider.getQuantityFactory(
 				Length.class).create(0.466697,
@@ -105,14 +105,14 @@ public class Mercury extends Planet {
 
 		Quantity<Speed> averageOrbitalSpeed = QuantityFactoryProvider
 				.getQuantityFactory(Speed.class).create(47.362,
-						MetricPrefix.KILO(SI.METRES_PER_SECOND));
+						MetricPrefix.KILO(Units.METRES_PER_SECOND));
 
 		Quantity<Angle> meanAnomaly = QuantityFactoryProvider
 				.getQuantityFactory(Angle.class)
-				.create(174.796, SI.DEGREE_ANGLE);
+				.create(174.796, Units.DEGREE_ANGLE);
 
 		Quantity<Time> orbitalPeriod = QuantityFactoryProvider
-				.getQuantityFactory(Time.class).create(87.9691, SI.DAY);
+				.getQuantityFactory(Time.class).create(87.9691, Units.DAY);
 
 		Quantity<Length> periphelion = QuantityFactoryProvider
 				.getQuantityFactory(Length.class).create(0.307499,
@@ -137,7 +137,7 @@ public class Mercury extends Planet {
 		atmospherComposition.add("Potassium");
 
 		Quantity<Temperature> surfaceTemperature = QuantityFactoryProvider
-				.getQuantityFactory(Temperature.class).create(340, SI.KELVIN);
+				.getQuantityFactory(Temperature.class).create(340, Units.KELVIN);
 
 		PlanetaryAtmosphericProperties mercuryAtmosphericProperties = new PlanetaryAtmosphericProperties(
 				null, surfaceTemperature, atmospherComposition);
