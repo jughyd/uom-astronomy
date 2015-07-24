@@ -8,15 +8,16 @@ import javax.measure.quantity.Mass;
 import javax.measure.quantity.Speed;
 import javax.measure.quantity.Time;
 import javax.measure.quantity.Volume;
-import si.uom.quantity.Density;
+import javax.measure.spi.Bootstrap;
 
+import si.uom.quantity.Density;
 import space.uom.astronomy.solarsystem.constants.AstronomicalConstants;
 import space.uom.astronomy.solarsystem.properties.general.AstronomicalUtility;
 import space.uom.astronomy.solarsystem.properties.physical.Albedo;
 import space.uom.astronomy.solarsystem.properties.physical.Circumference;
 import space.uom.astronomy.solarsystem.properties.physical.CommonPhysicalProperties;
 import space.uom.astronomy.solarsystem.units.AstronomicalSystemOfUnits;
-import tec.uom.se.spi.QuantityFactoryProvider;
+import tec.uom.se.spi.QuantityFactoryService;
 import tec.uom.se.unit.Units;
 import tec.uom.se.unit.MetricPrefix;
 
@@ -27,7 +28,8 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 	private Circumference circumference;
 	private Quantity<Speed> equatorialRotationVelocity;
 	private double momentOfInertia;
-
+	private final QuantityFactoryService factoryService;
+	 
 	public PlanetaryPhysicalProperties(Quantity<Length> polRadius,
 			Quantity<Length> equRadius, Quantity<Speed> equRotationVelocity,
 			double momOfInertia, Circumference circum,
@@ -35,6 +37,7 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 			Quantity<Density> density, Quantity<Mass> mass,
 			Albedo albdo) {
 		super(sidRotationPeriod, radius, density, mass, albdo);
+		factoryService = Bootstrap.getService(QuantityFactoryService.class);
 		this.polarRadius = polRadius;
 		this.equatorialRadius = equRadius;
 		this.equatorialRotationVelocity = equRotationVelocity;
@@ -116,7 +119,7 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 									* (Math.asin(ellipticalEccentricity)));
 				}
 			}
-			surfaceArea = QuantityFactoryProvider
+			surfaceArea = factoryService
 					.getQuantityFactory(Area.class).create(surfaceAreaValue,
 							AstronomicalSystemOfUnits.SQUARE_KILOMETRE);
 		}
@@ -144,7 +147,7 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 				volumeValue = (4 / 3) * AstronomicalConstants.PI
 						* Math.pow(polarRadiusValue, 3);
 			}
-			planetVolume = QuantityFactoryProvider.getQuantityFactory(
+			planetVolume = factoryService.getQuantityFactory(
 					Volume.class).create(volumeValue,
 					AstronomicalSystemOfUnits.CUBIC_KILOMETRE);
 		}
@@ -160,7 +163,7 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 					.getValue();
 			double gravityValue = (AstronomicalConstants.EARTH_GRAVITATIONAL_CONSTANT * massValue)
 					/ Math.pow(meanRadiusValue, 2);
-			gravity = QuantityFactoryProvider.getQuantityFactory(
+			gravity = factoryService.getQuantityFactory(
 					Acceleration.class).create(gravityValue,
 					Units.METRES_PER_SQUARE_SECOND);
 		}
@@ -178,7 +181,7 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 			double escVelResult = Math
 					.sqrt((2 * AstronomicalConstants.EARTH_GRAVITATIONAL_CONSTANT * massValue)
 							/ meanRadiusValue);
-			escapeVelocity = QuantityFactoryProvider.getQuantityFactory(
+			escapeVelocity = factoryService.getQuantityFactory(
 					Speed.class).create(escVelResult, Units.METRES_PER_SECOND);
 		}
 		return escapeVelocity;
