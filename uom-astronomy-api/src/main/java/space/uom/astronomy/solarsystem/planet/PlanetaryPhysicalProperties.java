@@ -9,6 +9,7 @@ import javax.measure.quantity.Speed;
 import javax.measure.quantity.Time;
 import javax.measure.quantity.Volume;
 import javax.measure.spi.Bootstrap;
+import javax.measure.spi.QuantityFactoryService;
 
 import si.uom.quantity.Density;
 import space.uom.astronomy.solarsystem.constants.AstronomicalConstants;
@@ -17,7 +18,6 @@ import space.uom.astronomy.solarsystem.properties.physical.Albedo;
 import space.uom.astronomy.solarsystem.properties.physical.Circumference;
 import space.uom.astronomy.solarsystem.properties.physical.CommonPhysicalProperties;
 import space.uom.astronomy.solarsystem.units.AstronomicalSystemOfUnits;
-import tec.uom.se.spi.QuantityFactoryService;
 import tec.uom.se.unit.Units;
 import tec.uom.se.unit.MetricPrefix;
 
