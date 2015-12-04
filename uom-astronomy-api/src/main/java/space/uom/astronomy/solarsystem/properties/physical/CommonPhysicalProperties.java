@@ -5,19 +5,19 @@ import javax.measure.quantity.Length;
 import javax.measure.quantity.Mass;
 import javax.measure.quantity.Speed;
 import javax.measure.quantity.Time;
-import javax.measure.quantity.MassDensity;
+import si.uom.quantity.Density;
 
 public abstract class CommonPhysicalProperties {
 
 	private Quantity<Time> siderealRotationPeriod;
 	private Quantity<Length> meanRadius;
-	private Quantity<MassDensity> meanDensity;
+	private Quantity<Density> meanDensity;
 	private Quantity<Mass> absoluteMass;
 	private Albedo albedo;
 	
 	public CommonPhysicalProperties(Quantity<Time> sidRotationPeriod,
 			Quantity<Length> radius,
-			Quantity<MassDensity> density,
+			Quantity<Density> density,
 			Quantity<Mass> mass,
 			Albedo albdo) {
 		this.siderealRotationPeriod = sidRotationPeriod;
@@ -31,7 +31,7 @@ public abstract class CommonPhysicalProperties {
 		return absoluteMass;
 	}
 
-	public Quantity<MassDensity> getMeanDensity() {
+	public Quantity<Density> getMeanDensity() {
 		return meanDensity;
 	}
 
