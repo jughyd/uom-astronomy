@@ -4,7 +4,7 @@ import javax.measure.Quantity;
 import javax.measure.quantity.Time;
 
 import space.uom.astronomy.solarsystem.properties.general.GeneralAstronomicalProperties;
-import tec.uom.se.unit.SI;
+import tec.uom.se.unit.Units;
 
 public class Planet implements GeneralAstronomicalProperties {
 
@@ -51,7 +51,7 @@ public class Planet implements GeneralAstronomicalProperties {
 	
 	@Override
 	public Quantity<Time> getAge() {
-		Quantity<Time> timeInDays = age.to(SI.DAY);
+		Quantity<Time> timeInDays = age.to(Units.DAY);
 		return timeInDays;
 	}
 

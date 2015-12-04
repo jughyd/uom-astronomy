@@ -8,16 +8,17 @@ import javax.measure.quantity.Mass;
 import javax.measure.quantity.Speed;
 import javax.measure.quantity.Time;
 import javax.measure.quantity.Volume;
-import javax.measure.quantity.MassDensity;
+import javax.measure.spi.Bootstrap;
+import javax.measure.spi.QuantityFactoryService;
 
+import si.uom.quantity.Density;
 import space.uom.astronomy.solarsystem.constants.AstronomicalConstants;
 import space.uom.astronomy.solarsystem.properties.general.AstronomicalUtility;
 import space.uom.astronomy.solarsystem.properties.physical.Albedo;
 import space.uom.astronomy.solarsystem.properties.physical.Circumference;
 import space.uom.astronomy.solarsystem.properties.physical.CommonPhysicalProperties;
 import space.uom.astronomy.solarsystem.units.AstronomicalSystemOfUnits;
-import tec.uom.se.spi.QuantityFactoryProvider;
-import tec.uom.se.unit.SI;
+import tec.uom.se.unit.Units;
 import tec.uom.se.unit.MetricPrefix;
 
 public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
@@ -27,14 +28,16 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 	private Circumference circumference;
 	private Quantity<Speed> equatorialRotationVelocity;
 	private double momentOfInertia;
-
+	private final QuantityFactoryService factoryService;
+	 
 	public PlanetaryPhysicalProperties(Quantity<Length> polRadius,
 			Quantity<Length> equRadius, Quantity<Speed> equRotationVelocity,
 			double momOfInertia, Circumference circum,
 			Quantity<Time> sidRotationPeriod, Quantity<Length> radius,
-			Quantity<MassDensity> density, Quantity<Mass> mass,
+			Quantity<Density> density, Quantity<Mass> mass,
 			Albedo albdo) {
 		super(sidRotationPeriod, radius, density, mass, albdo);
+		factoryService = Bootstrap.getService(QuantityFactoryService.class);
 		this.polarRadius = polRadius;
 		this.equatorialRadius = equRadius;
 		this.equatorialRotationVelocity = equRotationVelocity;
@@ -66,9 +69,9 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 		double flatten = 0;
 		if (getPolarRadius() != null && getEquatorialRadius() != null) {
 			double polarRadiusValue = (double) getPolarRadius().to(
-					MetricPrefix.KILO(SI.METRE)).getValue();
+					MetricPrefix.KILO(Units.METRE)).getValue();
 			double equatorialRadiusValue = (double) getEquatorialRadius().to(
-					MetricPrefix.KILO(SI.METRE)).getValue();
+					MetricPrefix.KILO(Units.METRE)).getValue();
 			flatten = (equatorialRadiusValue - polarRadiusValue)
 					/ equatorialRadiusValue;
 		}
@@ -79,9 +82,9 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 		Quantity<Area> surfaceArea = null;
 		if (getPolarRadius() != null && getEquatorialRadius() != null) {
 			double polarRadiusValue = (double) getPolarRadius().to(
-					MetricPrefix.KILO(SI.METRE)).getValue();
+					MetricPrefix.KILO(Units.METRE)).getValue();
 			double equatorialRadiusValue = (double) getEquatorialRadius().to(
-					MetricPrefix.KILO(SI.METRE)).getValue();
+					MetricPrefix.KILO(Units.METRE)).getValue();
 			double ellipticalEccentricity = 0;
 			double surfaceAreaValue = 0;
 			if (polarRadiusValue != 0 && equatorialRadiusValue != 0) {
@@ -116,7 +119,7 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 									* (Math.asin(ellipticalEccentricity)));
 				}
 			}
-			surfaceArea = QuantityFactoryProvider
+			surfaceArea = factoryService
 					.getQuantityFactory(Area.class).create(surfaceAreaValue,
 							AstronomicalSystemOfUnits.SQUARE_KILOMETRE);
 		}
@@ -128,11 +131,11 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 		if (getPolarRadius() != null && getEquatorialRadius() != null
 				&& getMeanRadius() != null) {
 			double polarRadiusValue = (double) getPolarRadius().to(
-					MetricPrefix.KILO(SI.METRE)).getValue();
+					MetricPrefix.KILO(Units.METRE)).getValue();
 			double equatorialRadiusValue = (double) getEquatorialRadius().to(
-					MetricPrefix.KILO(SI.METRE)).getValue();
+					MetricPrefix.KILO(Units.METRE)).getValue();
 			double meanRadiusValue = (double) getMeanRadius().to(
-					MetricPrefix.KILO(SI.METRE)).getValue();
+					MetricPrefix.KILO(Units.METRE)).getValue();
 			double volumeValue = 0;
 			if (polarRadiusValue != 0 && equatorialRadiusValue != 0
 					&& meanRadiusValue != 0) {
@@ -144,7 +147,7 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 				volumeValue = (4 / 3) * AstronomicalConstants.PI
 						* Math.pow(polarRadiusValue, 3);
 			}
-			planetVolume = QuantityFactoryProvider.getQuantityFactory(
+			planetVolume = factoryService.getQuantityFactory(
 					Volume.class).create(volumeValue,
 					AstronomicalSystemOfUnits.CUBIC_KILOMETRE);
 		}
@@ -155,14 +158,14 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 		Quantity<Acceleration> gravity = null;
 		if (getAbsoluteMass() != null && getMeanRadius() != null) {
 			double meanRadiusValue = (double) getMeanRadius().to(
-					MetricPrefix.KILO(SI.METRE)).getValue();
-			double massValue = (double) getAbsoluteMass().to(SI.KILOGRAM)
+					MetricPrefix.KILO(Units.METRE)).getValue();
+			double massValue = (double) getAbsoluteMass().to(Units.KILOGRAM)
 					.getValue();
 			double gravityValue = (AstronomicalConstants.EARTH_GRAVITATIONAL_CONSTANT * massValue)
 					/ Math.pow(meanRadiusValue, 2);
-			gravity = QuantityFactoryProvider.getQuantityFactory(
+			gravity = factoryService.getQuantityFactory(
 					Acceleration.class).create(gravityValue,
-					SI.METRES_PER_SQUARE_SECOND);
+					Units.METRES_PER_SQUARE_SECOND);
 		}
 		return gravity;
 	}
@@ -172,14 +175,14 @@ public class PlanetaryPhysicalProperties extends CommonPhysicalProperties {
 		Quantity<Speed> escapeVelocity = null;
 		if (getAbsoluteMass() != null && getMeanRadius() != null) {
 			double meanRadiusValue = (double) getMeanRadius().to(
-					MetricPrefix.KILO(SI.METRE)).getValue();
-			double massValue = (double) getAbsoluteMass().to(SI.KILOGRAM)
+					MetricPrefix.KILO(Units.METRE)).getValue();
+			double massValue = (double) getAbsoluteMass().to(Units.KILOGRAM)
 					.getValue();
 			double escVelResult = Math
 					.sqrt((2 * AstronomicalConstants.EARTH_GRAVITATIONAL_CONSTANT * massValue)
 							/ meanRadiusValue);
-			escapeVelocity = QuantityFactoryProvider.getQuantityFactory(
-					Speed.class).create(escVelResult, SI.METRES_PER_SECOND);
+			escapeVelocity = factoryService.getQuantityFactory(
+					Speed.class).create(escVelResult, Units.METRES_PER_SECOND);
 		}
 		return escapeVelocity;
 	}

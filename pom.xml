@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>space.uom</groupId>
+	<groupId>space.uom.astronomy</groupId>
 	<artifactId>uom-astronomy</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -13,9 +13,10 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<jsr.version>0.8-SNAPSHOT</jsr.version>
-		<se.version>0.8-SNAPSHOT</se.version>
-		<lib.version>0.6</lib.version>
+		<jsr.version>0.8</jsr.version>
+		<se.version>0.8</se.version>
+		<si.version>0.4</si.version>
+		<lib.version>0.8</lib.version>
 	</properties>
 	<name>UoM Astronomy</name>
 
@@ -54,6 +55,46 @@
 				<artifactId>uom-lib</artifactId>
 				<version>${lib.version}</version>
 			</dependency>
+			<dependency>
+                <groupId>si.uom</groupId>
+                <artifactId>si-quantity</artifactId>
+                <version>${si.version}</version>
+            </dependency>
 		</dependencies>
 	</dependencyManagement>
+	
+	<!-- Additional repositories -->
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-release</id>
+            <name>libs-release</name>
+            <url>http://oss.jfrog.org/artifactory/libs-release</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>bintray-snapshot</id>
+            <name>libs-snapshot</name>
+            <url>http://oss.jfrog.org/artifactory/libs-snapshot</url>
+        </repository>
+        <repository>
+            <id>geotoolkit</id>
+            <name>Geotoolkit.org project</name>
+            <url>http://maven.geotoolkit.org</url>
+        </repository>
+        <repository>
+            <id>jcenter</id>
+            <name>JCenter</name>
+            <url>http://jcenter.bintray.com</url>
+        </repository>
+    </repositories>
+    <parent>
+    	<groupId>space.uom</groupId>
+    	<artifactId>uom-spaces</artifactId>
+    	<version>0.1-SNAPSHOT</version>
+    </parent>
 </project>
